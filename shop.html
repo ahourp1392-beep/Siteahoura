@@ -1,635 +1,1335 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ورود | نمونه کار</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Tahoma,Arial,sans-serif;
-}
+  <title>فروشگاه | نمونه کار</title>
 
-body{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#080b16;
-    color:white;
-}
+  <style>
 
-.box{
-    width:92%;
-    max-width:420px;
-    padding:35px;
-    border-radius:25px;
-    background:#111525;
-    border:1px solid rgba(255,255,255,.1);
-    box-shadow:0 20px 60px rgba(0,0,0,.45);
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-h1{
-    text-align:center;
-    margin-bottom:10px;
-}
+    body {
+      font-family: Tahoma, Arial, sans-serif;
+      background: #f5f7fb;
+      color: #111827;
+    }
 
-.subtitle{
-    text-align:center;
-    color:#999;
-    margin-bottom:30px;
-}
+    /* HEADER */
 
-input{
-    width:100%;
-    padding:15px;
-    margin-bottom:14px;
-    border-radius:12px;
-    border:1px solid rgba(255,255,255,.1);
-    background:#080b16;
-    color:white;
-    outline:none;
-}
+    .header {
+      height: 70px;
+      background: white;
+      box-shadow: 0 3px 15px rgba(0,0,0,.08);
 
-button{
-    width:100%;
-    padding:14px;
-    border:0;
-    border-radius:12px;
-    background:linear-gradient(135deg,#7c3aed,#2563eb);
-    color:white;
-    cursor:pointer;
-    font-size:15px;
-}
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
-button:hover{
-    filter:brightness(1.15);
-}
+      padding: 0 30px;
 
-.switch{
-    text-align:center;
-    color:#999;
-    margin-top:20px;
-}
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-.switch span{
-    color:#8b5cf6;
-    cursor:pointer;
-}
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
 
-.error{
-    min-height:22px;
-    color:#ff6b6b;
-    text-align:center;
-    margin-bottom:8px;
-}
-</style>
+    .header-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .header-btn {
+      border: 0;
+      background: #f3f4f6;
+      color: #111827;
+
+      padding: 10px 15px;
+      border-radius: 12px;
+
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .header-btn:hover {
+      background: #e5e7eb;
+    }
+
+    .cart-count {
+      display: inline-flex;
+
+      min-width: 21px;
+      height: 21px;
+
+      align-items: center;
+      justify-content: center;
+
+      background: #ef4444;
+      color: white;
+
+      border-radius: 50%;
+      font-size: 11px;
+
+      margin-right: 4px;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 65px 20px;
+      text-align: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          #111827,
+          #312e81,
+          #2563eb
+        );
+
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      opacity: .85;
+    }
+
+    /* CONTAINER */
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 35px 20px;
+    }
+
+    .section-title {
+      font-size: 27px;
+      margin-bottom: 25px;
+    }
+
+    /* PRODUCTS */
+
+    .products {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+      gap: 22px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+
+      box-shadow: 0 5px 20px rgba(0,0,0,.07);
+
+      transition: .2s;
+    }
+
+    .product:hover {
+      transform: translateY(-4px);
+    }
+
+    .product img {
+      width: 100%;
+      height: 220px;
+
+      object-fit: cover;
+      background: #eee;
+    }
+
+    .product-content {
+      padding: 17px;
+    }
+
+    .product h3 {
+      margin-bottom: 9px;
+    }
+
+    .description {
+      color: #6b7280;
+      font-size: 14px;
+
+      min-height: 42px;
+
+      margin-bottom: 13px;
+      line-height: 1.7;
+    }
+
+    .price {
+      font-size: 18px;
+      font-weight: bold;
+
+      margin-bottom: 13px;
+    }
+
+    .add-btn {
+      width: 100%;
+
+      border: 0;
+      padding: 12px;
+
+      border-radius: 12px;
+
+      background: #111827;
+      color: white;
+
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .add-btn:hover {
+      background: #2563eb;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+
+      text-align: center;
+
+      color: #777;
+
+      padding: 60px;
+
+      background: white;
+      border-radius: 18px;
+    }
+
+    /* ADMIN */
+
+    .admin-panel {
+      display: none;
+
+      margin-bottom: 35px;
+
+      background: white;
+      padding: 25px;
+
+      border-radius: 20px;
+
+      box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    }
+
+    .admin-title {
+      font-size: 24px;
+      font-weight: bold;
+
+      margin-bottom: 20px;
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+
+      gap: 13px;
+    }
+
+    .admin-grid input,
+    .admin-grid textarea {
+      width: 100%;
+
+      padding: 12px;
+
+      border: 1px solid #ddd;
+      border-radius: 10px;
+
+      font-family: inherit;
+      outline: none;
+    }
+
+    .admin-grid textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .admin-add-btn {
+      width: 100%;
+
+      border: 0;
+
+      padding: 13px;
+
+      border-radius: 11px;
+
+      background: #111827;
+      color: white;
+
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .admin-products {
+      margin-top: 25px;
+    }
+
+    .admin-product {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 12px;
+
+      padding: 13px 0;
+
+      border-bottom: 1px solid #eee;
+    }
+
+    .admin-product-info {
+      display: flex;
+      align-items: center;
+
+      gap: 12px;
+
+      flex: 1;
+    }
+
+    .admin-product img {
+      width: 60px;
+      height: 60px;
+
+      object-fit: cover;
+
+      border-radius: 10px;
+    }
+
+    .delete-btn {
+      border: 0;
+
+      background: #dc2626;
+      color: white;
+
+      padding: 9px 13px;
+
+      border-radius: 9px;
+
+      cursor: pointer;
+    }
+
+    /* MODAL */
+
+    .modal {
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(0,0,0,.6);
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      z-index: 1000;
+
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: white;
+
+      width: 100%;
+      max-width: 450px;
+
+      max-height: 90vh;
+
+      overflow-y: auto;
+
+      border-radius: 20px;
+
+      padding: 25px;
+
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+
+      top: 12px;
+      left: 12px;
+
+      border: 0;
+
+      width: 35px;
+      height: 35px;
+
+      border-radius: 50%;
+
+      background: #eee;
+
+      cursor: pointer;
+
+      font-size: 19px;
+    }
+
+    .modal-title {
+      font-size: 24px;
+      font-weight: bold;
+
+      margin-bottom: 20px;
+    }
+
+    .profile-info {
+      background: #f3f4f6;
+
+      padding: 18px;
+
+      border-radius: 14px;
+
+      margin-bottom: 15px;
+
+      line-height: 2;
+    }
+
+    .modal-btn {
+      width: 100%;
+
+      border: 0;
+
+      padding: 13px;
+
+      border-radius: 12px;
+
+      margin-top: 10px;
+
+      cursor: pointer;
+
+      font-weight: bold;
+    }
+
+    .primary {
+      background: #111827;
+      color: white;
+    }
+
+    .secondary {
+      background: #e5e7eb;
+      color: #111827;
+    }
+
+    .danger {
+      background: #dc2626;
+      color: white;
+    }
+
+    /* CART */
+
+    .cart-item {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 10px;
+
+      padding: 15px 0;
+
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-item-info {
+      flex: 1;
+    }
+
+    .cart-item-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .cart-item-price {
+      color: #666;
+      font-size: 13px;
+    }
+
+    .remove-cart {
+      border: 0;
+
+      background: #fee2e2;
+      color: #dc2626;
+
+      padding: 8px 11px;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+    }
+
+    .cart-total {
+      margin-top: 20px;
+
+      font-size: 20px;
+
+      font-weight: bold;
+    }
+
+    .not-logged {
+      text-align: center;
+
+      color: #666;
+
+      line-height: 2;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:600px) {
+
+      .header {
+        padding: 0 10px;
+      }
+
+      .logo {
+        font-size: 18px;
+      }
+
+      .header-btn {
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .product img {
+        height: 190px;
+      }
+
+      .admin-product {
+        align-items: flex-start;
+      }
+
+    }
+
+  </style>
 </head>
 
 <body>
 
-<div class="box">
+  <!-- HEADER -->
 
-    <div id="loginPage">
+  <header class="header">
 
-        <h1>ورود</h1>
+    <div class="logo">
+      نمونه کار
+    </div>
 
-        <p class="subtitle">
-            وارد حساب خود شوید
-        </p>
+    <div class="header-actions">
 
-        <input
-            id="loginUsername"
-            placeholder="نام کاربری"
-        >
+      <button
+        class="header-btn"
+        onclick="openCart()"
+      >
+        🛒 سبد
+        <span
+          class="cart-count"
+          id="cartCount"
+        >0</span>
+      </button>
 
-        <input
-            id="loginPassword"
-            type="password"
-            placeholder="رمز عبور"
-        >
-
-        <div id="loginError" class="error"></div>
-
-        <button onclick="login()">
-            ورود
-        </button>
-
-        <div class="switch">
-            حساب ندارید؟
-            <span onclick="showSignup()">
-                ثبت‌نام
-            </span>
-        </div>
+      <button
+        class="header-btn"
+        onclick="openProfile()"
+      >
+        👤 پروفایل
+      </button>
 
     </div>
 
+  </header>
 
-    <div id="signupPage" style="display:none">
 
-        <h1>ثبت‌نام</h1>
+  <!-- HERO -->
 
-        <p class="subtitle">
-            حساب جدید بسازید
-        </p>
+  <section class="hero">
+
+    <h1>فروشگاه</h1>
+
+    <p>
+      محصولات مورد نظر خود را انتخاب کنید
+    </p>
+
+  </section>
+
+
+  <!-- MAIN -->
+
+  <main class="container">
+
+    <!-- ADMIN -->
+
+    <section
+      class="admin-panel"
+      id="adminPanel"
+    >
+
+      <div class="admin-title">
+        ⚙️ پنل مدیریت محصولات
+      </div>
+
+      <div class="admin-grid">
 
         <input
-            id="signupUsername"
-            placeholder="نام کاربری"
+          id="productName"
+          type="text"
+          placeholder="نام محصول"
         >
 
         <input
-            id="signupPassword"
-            type="password"
-            placeholder="رمز عبور"
+          id="productPrice"
+          type="number"
+          placeholder="قیمت به تومان"
         >
 
         <input
-            id="signupPassword2"
-            type="password"
-            placeholder="تکرار رمز عبور"
+          id="productImage"
+          type="text"
+          placeholder="لینک تصویر محصول"
         >
 
-        <div id="signupError" class="error"></div>
+        <textarea
+          id="productDescription"
+          placeholder="توضیحات محصول"
+        ></textarea>
 
-        <button onclick="signup()">
-            ساخت حساب
+        <button
+          class="admin-add-btn"
+          onclick="addProduct()"
+        >
+          ➕ افزودن محصول
         </button>
 
-        <div class="switch">
-            حساب دارید؟
-            <span onclick="showLogin()">
-                ورود
-            </span>
-        </div>
+      </div>
+
+      <div
+        class="admin-products"
+        id="adminProducts"
+      ></div>
+
+    </section>
+
+
+    <!-- PRODUCTS -->
+
+    <h2 class="section-title">
+      محصولات
+    </h2>
+
+    <div
+      class="products"
+      id="products"
+    ></div>
+
+  </main>
+
+
+  <!-- PROFILE MODAL -->
+
+  <div
+    class="modal"
+    id="profileModal"
+    onclick="outsideClose(event, 'profileModal')"
+  >
+
+    <div class="modal-box">
+
+      <button
+        class="close"
+        onclick="closeModal('profileModal')"
+      >
+        ×
+      </button>
+
+      <div class="modal-title">
+        👤 پروفایل
+      </div>
+
+      <div id="profileContent"></div>
 
     </div>
 
-</div>
+  </div>
 
 
-<script>
+  <!-- CART MODAL -->
 
-const ADMIN_USERNAME = "ahourapakpanah";
-const ADMIN_PASSWORD = "123456789abcd";
+  <div
+    class="modal"
+    id="cartModal"
+    onclick="outsideClose(event, 'cartModal')"
+  >
 
+    <div class="modal-box">
 
-function getUsers(){
+      <button
+        class="close"
+        onclick="closeModal('cartModal')"
+      >
+        ×
+      </button>
 
-    return JSON.parse(
-        localStorage.getItem("sample_users") || "[]"
-    );
+      <div class="modal-title">
+        🛒 سبد خرید
+      </div>
 
-}
+      <div id="cartContent"></div>
 
+    </div>
 
-function saveUsers(users){
-
-    localStorage.setItem(
-        "sample_users",
-        JSON.stringify(users)
-    );
-
-}
-
-
-function showSignup(){
-
-    document.getElementById("loginPage").style.display =
-        "none";
-
-    document.getElementById("signupPage").style.display =
-        "block";
-
-}
+  </div>
 
 
-function showLogin(){
+  <script>
 
-    document.getElementById("signupPage").style.display =
-        "none";
+    const USERS_KEY = "sample_users";
+    const CURRENT_USER_KEY = "sample_current_user";
+    const PRODUCTS_KEY = "sample_products";
 
-    document.getElementById("loginPage").style.display =
-        "block";
+    /*
+      محصولات پیش‌فرض
+    */
 
-}
+    const defaultProducts = [
+      {
+        id: 1,
+        name: "محصول نمونه ۱",
+        price: 250000,
+        description: "این یک محصول نمونه برای فروشگاه است.",
+        image: "https://picsum.photos/600/600?random=11"
+      },
+
+      {
+        id: 2,
+        name: "محصول نمونه ۲",
+        price: 390000,
+        description: "یک محصول نمونه دیگر برای نمایش سایت.",
+        image: "https://picsum.photos/600/600?random=12"
+      },
+
+      {
+        id: 3,
+        name: "محصول نمونه ۳",
+        price: 520000,
+        description: "توضیحات نمونه برای این محصول.",
+        image: "https://picsum.photos/600/600?random=13"
+      }
+    ];
 
 
-function login(){
+    /* =========================
+       USER
+    ========================= */
 
-    const username =
-        document.getElementById("loginUsername").value.trim();
+    function getCurrentUser() {
 
-    const password =
-        document.getElementById("loginPassword").value;
+      try {
 
-    const error =
-        document.getElementById("loginError");
-
-
-    error.innerText = "";
-
-
-    if(!username || !password){
-
-        error.innerText =
-            "نام کاربری و رمز عبور را وارد کنید";
-
-        return;
-    }
-
-
-    if(
-        username === ADMIN_USERNAME &&
-        password === ADMIN_PASSWORD
-    ){
-
-        localStorage.setItem(
-            "sample_current_user",
-            JSON.stringify({
-                username:ADMIN_USERNAME,
-                role:4
-            })
+        return JSON.parse(
+          localStorage.getItem(CURRENT_USER_KEY)
         );
 
-        window.location.href = "shop.html";
+      } catch {
 
-        return;
+        return null;
+
+      }
+
     }
 
 
-    const users = getUsers();
-
-
-    const user = users.find(
-        u =>
-            u.username === username &&
-            u.password === password
-    );
-
-
-    if(!user){
-
-        error.innerText =
-            "نام کاربری یا رمز عبور اشتباه است";
-
-        return;
+    function isLoggedIn() {
+      return !!getCurrentUser();
     }
 
 
-    localStorage.setItem(
-        "sample_current_user",
-        JSON.stringify(user)
-    );
+    function isAdmin() {
 
+      const user = getCurrentUser();
 
-    window.location.href =
-        "shop.html";
+      return user && user.role === 4;
 
-}
-
-
-function signup(){
-
-    const username =
-        document.getElementById("signupUsername").value.trim();
-
-    const password =
-        document.getElementById("signupPassword").value;
-
-    const password2 =
-        document.getElementById("signupPassword2").value;
-
-    const error =
-        document.getElementById("signupError");
-
-
-    error.innerText = "";
-
-
-    if(username.length < 3){
-
-        error.innerText =
-            "نام کاربری حداقل ۳ حرف باشد";
-
-        return;
     }
 
 
-    if(password.length < 5){
+    /* =========================
+       PRODUCTS
+    ========================= */
 
-        error.innerText =
-            "رمز عبور حداقل ۵ کاراکتر باشد";
+    function getProducts() {
 
-        return;
+      try {
+
+        const saved =
+          JSON.parse(
+            localStorage.getItem(PRODUCTS_KEY)
+          );
+
+        if (
+          Array.isArray(saved) &&
+          saved.length > 0
+        ) {
+          return saved;
+        }
+
+      } catch {}
+
+      localStorage.setItem(
+        PRODUCTS_KEY,
+        JSON.stringify(defaultProducts)
+      );
+
+      return defaultProducts;
     }
 
 
-    if(password !== password2){
+    function saveProducts(products) {
 
-        error.innerText =
-            "رمزهای عبور یکسان نیستند";
+      localStorage.setItem(
+        PRODUCTS_KEY,
+        JSON.stringify(products)
+      );
 
-        return;
     }
 
 
-    const users = getUsers();
+    function renderProducts() {
 
+      const container =
+        document.getElementById("products");
 
-    if(
-        username === ADMIN_USERNAME ||
-        users.some(u => u.username === username)
-    ){
+      const products =
+        getProducts();
 
-        error.innerText =
-            "این نام کاربری قبلاً استفاده شده";
+      if (products.length === 0) {
+
+        container.innerHTML =
+          `<div class="empty">
+            هنوز محصولی اضافه نشده است.
+          </div>`;
 
         return;
+      }
+
+      container.innerHTML =
+        products.map(product => {
+
+          return `
+            <div class="product">
+
+              <img
+                src="${escapeHTML(product.image)}"
+                alt="${escapeHTML(product.name)}"
+                onerror="this.src='https://picsum.photos/600/600?random=99'"
+              >
+
+              <div class="product-content">
+
+                <h3>
+                  ${escapeHTML(product.name)}
+                </h3>
+
+                <div class="description">
+                  ${escapeHTML(product.description)}
+                </div>
+
+                <div class="price">
+                  ${formatPrice(product.price)} تومان
+                </div>
+
+                <button
+                  class="add-btn"
+                  onclick="addToCart(${product.id})"
+                >
+                  🛒 افزودن به سبد خرید
+                </button>
+
+              </div>
+
+            </div>
+          `;
+
+        }).join("");
+
     }
 
 
-    users.push({
+    /* =========================
+       ADMIN
+    ========================= */
 
-        username:username,
+    function showAdminPanel() {
 
-        password:password,
+      const panel =
+        document.getElementById("adminPanel");
 
-        role:1
+      if (isAdmin()) {
 
-    });
+        panel.style.display = "block";
 
+        renderAdminProducts();
 
-    saveUsers(users);
+      } else {
 
+        panel.style.display = "none";
 
-    alert("حساب با موفقیت ساخته شد");
+      }
 
-
-    document.getElementById(
-        "loginUsername"
-    ).value = username;
-
-
-    showLogin();
-
-}
-
-</script>
-
-</body>
-</html>    margin-bottom:10px;
-}
-
-.subtitle{
-    text-align:center;
-    color:#999;
-    margin-bottom:30px;
-}
-
-input{
-    width:100%;
-    padding:15px;
-    margin-bottom:14px;
-    border-radius:12px;
-    border:1px solid rgba(255,255,255,.1);
-    background:#080b16;
-    color:white;
-    outline:none;
-}
-
-button{
-    width:100%;
-    padding:14px;
-    border:0;
-    border-radius:12px;
-    background:linear-gradient(135deg,#7c3aed,#2563eb);
-    color:white;
-    cursor:pointer;
-    font-size:15px;
-}
-
-button:hover{
-    filter:brightness(1.15);
-}
-
-.switch{
-    text-align:center;
-    color:#999;
-    margin-top:20px;
-}
-
-.switch span{
-    color:#8b5cf6;
-    cursor:pointer;
-}
-
-.error{
-    min-height:22px;
-    color:#ff6b6b;
-    text-align:center;
-    margin-bottom:8px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="box">
-
-    <div id="loginPage">
-
-        <h1>ورود</h1>
-
-        <p class="subtitle">
-            وارد حساب خود شوید
-        </p>
-
-        <input
-            id="loginUsername"
-            placeholder="نام کاربری"
-        >
-
-        <input
-            id="loginPassword"
-            type="password"
-            placeholder="رمز عبور"
-        >
-
-        <div id="loginError" class="error"></div>
-
-        <button onclick="login()">
-            ورود
-        </button>
-
-        <div class="switch">
-            حساب ندارید؟
-            <span onclick="showSignup()">
-                ثبت‌نام
-            </span>
-        </div>
-
-    </div>
-
-
-    <div id="signupPage" style="display:none">
-
-        <h1>ثبت‌نام</h1>
-
-        <p class="subtitle">
-            حساب جدید بسازید
-        </p>
-
-        <input
-            id="signupUsername"
-            placeholder="نام کاربری"
-        >
-
-        <input
-            id="signupPassword"
-            type="password"
-            placeholder="رمز عبور"
-        >
-
-        <input
-            id="signupPassword2"
-            type="password"
-            placeholder="تکرار رمز عبور"
-        >
-
-        <div id="signupError" class="error"></div>
-
-        <button onclick="signup()">
-            ساخت حساب
-        </button>
-
-        <div class="switch">
-            حساب دارید؟
-            <span onclick="showLogin()">
-                ورود
-            </span>
-        </div>
-
-    </div>
-
-</div>
-
-
-<script>
-
-const ADMIN_USERNAME = "ahourapakpanah";
-const ADMIN_PASSWORD = "123456789abcd";
-
-
-function getUsers(){
-
-    return JSON.parse(
-        localStorage.getItem("sample_users") || "[]"
-    );
-
-}
-
-
-function saveUsers(users){
-
-    localStorage.setItem(
-        "sample_users",
-        JSON.stringify(users)
-    );
-
-}
-
-
-function showSignup(){
-
-    document.getElementById("loginPage").style.display =
-        "none";
-
-    document.getElementById("signupPage").style.display =
-        "block";
-
-}
-
-
-function showLogin(){
-
-    document.getElementById("signupPage").style.display =
-        "none";
-
-    document.getElementById("loginPage").style.display =
-        "block";
-
-}
-
-
-function login(){
-
-    const username =
-        document.getElementById("loginUsername").value.trim();
-
-    const password =
-        document.getElementById("loginPassword").value;
-
-    const error =
-        document.getElementById("loginError");
-
-
-    error.innerText = "";
-
-
-    if(!username || !password){
-
-        error.innerText =
-            "نام کاربری و رمز عبور را وارد کنید";
-
-        return;
     }
 
 
-    if(
-        username === ADMIN_USERNAME &&
-        password === ADMIN_PASSWORD
-    ){
+    function addProduct() {
 
-        localStorage.setItem(
-            "sample_current_user",
-            JSON.stringify({
-                username:ADMIN_USERNAME,
-                role:4
-            })
+      if (!isAdmin()) {
+
+        alert("دسترسی غیرمجاز.");
+        return;
+
+      }
+
+      const name =
+        document
+          .getElementById("productName")
+          .value.trim();
+
+      const price =
+        Number(
+          document
+            .getElementById("productPrice")
+            .value
         );
 
-        window.location.href = "shop.html";
+      const image =
+        document
+          .getElementById("productImage")
+          .value.trim();
+
+      const description =
+        document
+          .getElementById("productDescription")
+          .value.trim();
+
+
+      if (!name || !price) {
+
+        alert(
+          "نام محصول و قیمت را وارد کنید."
+        );
 
         return;
+
+      }
+
+
+      const products =
+        getProducts();
+
+
+      const newProduct = {
+
+        id: Date.now(),
+
+        name: name,
+
+        price: price,
+
+        description:
+          description ||
+          "بدون توضیحات",
+
+        image:
+          image ||
+          "https://picsum.photos/600/600?random=" +
+          Date.now()
+
+      };
+
+
+      products.push(newProduct);
+
+      saveProducts(products);
+
+
+      document.getElementById("productName").value = "";
+      document.getElementById("productPrice").value = "";
+      document.getElementById("productImage").value = "";
+      document.getElementById("productDescription").value = "";
+
+
+      renderProducts();
+      renderAdminProducts();
+
+      alert("محصول با موفقیت اضافه شد.");
+
     }
 
 
-    const users = getUsers();
+    function renderAdminProducts() {
+
+      const container =
+        document.getElementById("adminProducts");
+
+      const products =
+        getProducts();
 
 
-    const user = users.find(
-        u =>
-            u.username === username &&
-            u.password === password
-    );
+      if (products.length === 0) {
 
-
-    if(!user){
-
-        error.innerText =
-            "نام کاربری یا رمز عبور اشتباه است";
+        container.innerHTML =
+          "<p>محصولی وجود ندارد.</p>";
 
         return;
+
+      }
+
+
+      container.innerHTML =
+        products.map(product => {
+
+          return `
+            <div class="admin-product">
+
+              <div class="admin-product-info">
+
+                <img
+                  src="${escapeHTML(product.image)}"
+                  alt=""
+                >
+
+                <div>
+
+                  <strong>
+                    ${escapeHTML(product.name)}
+                  </strong>
+
+                  <div>
+                    ${formatPrice(product.price)}
+                    تومان
+                  </div>
+
+                </div>
+
+              </div>
+
+              <button
+                class="delete-btn"
+                onclick="deleteProduct(${product.id})"
+              >
+                حذف
+              </button>
+
+            </div>
+          `;
+
+        }).join("");
+
     }
 
 
-    localStorage.setItem(
-        "sample_current_user",
-        JSON.stringify(user)
+    function deleteProduct(id) {
+
+      if (!isAdmin()) {
+        return;
+      }
+
+      if (
+        !confirm(
+          "آیا از حذف این محصول مطمئن هستید؟"
+        )
+      ) {
+        return;
+      }
+
+
+      let products =
+        getProducts();
+
+      products =
+        products.filter(
+          product => product.id !== id
+        );
+
+      saveProducts(products);
+
+      renderProducts();
+      renderAdminProducts();
+
+    }
+
+
+    /* =========================
+       CART
+    ========================= */
+
+    function getCartKey() {
+
+      const user =
+        getCurrentUser();
+
+      if (!user) {
+        return null;
+      }
+
+      return "cart_" + user.username;
+
+    }
+
+
+    function getCart() {
+
+      const key =
+        getCartKey();
+
+      if (!key) {
+        return [];
+      }
+
+      try {
+
+        return JSON.parse(
+          localStorage.getItem(key)
+        ) || [];
+
+      } catch {
+
+        return [];
+
+      }
+
+    }
+
+
+    function saveCart(cart) {
+
+      const key =
+        getCartKey();
+
+      if (!key) {
+        return;
+      }
+
+      localStorage.setItem(
+        key,
+        JSON.stringify(cart)
+      );
+
+    }
+
+
+    function addToCart(productId) {
+
+      if (!isLoggedIn()) {
+
+        alert(
+          "برای افزودن محصول به سبد خرید ابتدا وارد حساب شوید."
+        );
+
+        window.location.href =
+          "index.html";
+
+        return;
+
+      }
+
+
+      const products =
+        getProducts();
+
+      const product =
+        products.find(
+          p => p.id === productId
+        );
+
+      if (!product) {
+        return;
+      }
+
+
+      const cart =
+        getCart();
+
+
+      const existing =
+        cart.find(
+          item => item.id === productId
+        );
+
+
+      if (existing) {
+
+        existing.quantity++;
+
+      } else {
+
+        cart.push({
+
+          id: product.id,
+
+          name: product.name,
+
+          price: product.price,
+
+          quantity: 1
+
+        });
+
+      }
+
+
+      saveCart(cart);
+
+      updateCartCount();
+
+      alert("محصول به سبد خرید اضافه شد.");
+
+    }
+
+
+    function removeFromCart(id) {
+
+      let cart =
+        getCart();
+
+      cart =
+        cart.filter(
+          item => item.id !== id
+        );
+
+      saveCart(cart);
+
+      updateCartCount();
+      renderCart();
+
+    }
+
+
+    function updateCartCount() {
+
+      const countElement =
+        document.getElementById("cartCount");
+
+      if (!isLoggedIn()) {
+
+        countElement.textContent = "0";
+        return;
+
+      }
+
+
+      const cart =
+        getCart();
+
+      const count =
+        cart.reduce(
+          (sum, item) =>
+            sum + item.quantity,
+          0
+        );
+
+
+      countElement.textContent =
+        count;
+
+    }
+
+
+    function openCart() {
+
+      /*
+        طبق ساختار جدید:
+        سبد خرید متعلق به shop.html است.
+      */
+
+      if (!isLoggedIn()) {
+
+        alert(
+          "برای مشاهده سبد خرید ابتدا وارد حساب شوید."
+        );
+
+        window.location.href =
+          "index.html";
+
+        return;
+
+      }
+
+
+      document.getElementById(
+        "cartModal"
+      ).style.display = "flex";
+
+
+      renderCart();
+
+    }
+
+
+    function renderCart() {
+
+      const container =
+        document.getElementById(
+          "cartContent"
+        );
+
+
+      const cart =
+        getCart();
+
+
+      if (cart.length === 0) {
+
+        container.innerHTML =
+          `<div class="not-logged">
+            سبد خرید شما خالی است.
+          </div>`;
+
+        return;
+
+      }
+
+
+      let total = 0;
+
+
+      const items =
+        cart.map(item => {
+
+          const itemTotal =
+            item.price *
+            item.quantity;
+
+          total += itemTotal;
+
+
+          return `
+            <div class="cart-item">
+
+              <div class="cart-item-info">
+
+                <div class="cart-item-title">
+                  ${escapeHTML(item.name)}
+                </div>
+
+                <div class="cart-item-price">
+                  ${formatPrice(item.price)}
+                  تومان ×
+                  ${item.quantity}
+           JSON.stringify(user)
     );
 
 
