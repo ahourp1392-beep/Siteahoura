@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ورود | نمونه کار</title>
+
+<title>نمونه کار</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -14,27 +16,1173 @@
 }
 
 body{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
     background:#080b16;
     color:white;
+    min-height:100vh;
 }
 
-.box{
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 5%;
+    background:rgba(8,11,22,.9);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.nav{
+    display:flex;
+    gap:9px;
+    align-items:center;
+}
+
+.nav button{
+    width:auto;
+    padding:10px 15px;
+}
+
+button{
+    border:0;
+    cursor:pointer;
+    color:white;
+    background:linear-gradient(135deg,#7c3aed,#2563eb);
+    border-radius:12px;
+    padding:12px 18px;
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.1);
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:35px auto;
+}
+
+.hero{
+    text-align:center;
+    padding:55px 20px;
+    margin-bottom:35px;
+    border-radius:25px;
+    background:
+        radial-gradient(circle at top,#312e81,transparent 55%),
+        rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.hero h1{
+    font-size:38px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    color:#aaa;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(240px,1fr));
+    gap:22px;
+}
+
+.product{
+    overflow:hidden;
+    border-radius:20px;
+    background:#111525;
+    border:1px solid rgba(255,255,255,.08);
+    transition:.25s;
+}
+
+.product:hover{
+    transform:translateY(-6px);
+    box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.product img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.productInfo{
+    padding:18px;
+}
+
+.productInfo h3{
+    margin-bottom:10px;
+}
+
+.description{
+    color:#aaa;
+    line-height:1.7;
+    min-height:48px;
+    margin-bottom:15px;
+}
+
+.price{
+    color:#60a5fa;
+    font-size:19px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.empty{
+    text-align:center;
+    padding:60px 20px;
+    color:#888;
+    background:#111525;
+    border-radius:20px;
+}
+
+#cartPanel{
+    position:fixed;
+    left:20px;
+    bottom:20px;
+    z-index:150;
+}
+
+.cartButton{
+    border-radius:50px;
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+#cartBox,
+#profileBox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.72);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:300;
+}
+
+.modal{
     width:92%;
-    max-width:420px;
-    padding:35px;
+    max-width:470px;
+    max-height:85vh;
+    overflow:auto;
+    background:#111525;
+    border-radius:25px;
+    padding:25px;
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.modal h2{
+    margin-bottom:20px;
+}
+
+.modal button{
+    margin-top:10px;
+}
+
+.cartItem{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.cartItem button{
+    background:#dc2626;
+    padding:8px 12px;
+    margin:0;
+}
+
+.total{
+    font-size:20px;
+    margin:20px 0;
+}
+
+.profileInfo{
+    padding:15px;
+    border-radius:15px;
+    background:#080b16;
+    margin-bottom:15px;
+}
+
+#adminPanel{
+    display:none;
+    margin-top:60px;
+    padding:25px;
     border-radius:25px;
     background:#111525;
     border:1px solid rgba(255,255,255,.1);
-    box-shadow:0 20px 60px rgba(0,0,0,.45);
 }
 
-h1{
-    text-align:center;
-    margin-bottom:10px;
+.adminForm{
+    display:grid;
+    gap:12px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.1);
+    background:#080b16;
+    color:white;
+    outline:none;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.adminProducts{
+    display:grid;
+    gap:12px;
+    margin-top:25px;
+}
+
+.adminProduct{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    padding:15px;
+    background:#080b16;
+    border-radius:14px;
+}
+
+.delete{
+    background:#dc2626;
+}
+
+.close{
+    background:#374151;
+}
+
+@media(max-width:600px){
+
+    header{
+        padding:14px;
+    }
+
+    .logo{
+        font-size:20px;
+    }
+
+    .nav button{
+        padding:8px 10px;
+        font-size:12px;
+    }
+
+    .hero h1{
+        font-size:28px;
+    }
+
+    .adminProduct{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        نمونه کار
+    </div>
+
+    <div class="nav">
+
+        <button onclick="openCart()">
+            🛒 سبد
+            <span id="cartCount">0</span>
+        </button>
+
+        <button onclick="openProfile()">
+            👤 پروفایل
+        </button>
+
+    </div>
+
+</header>
+
+
+<div class="container">
+
+    <section class="hero">
+
+        <h1>
+            فروشگاه
+        </h1>
+
+        <p>
+            محصولات موردنظرتان را مشاهده کنید
+        </p>
+
+    </section>
+
+
+    <div id="products" class="products"></div>
+
+
+    <!-- پنل ادمین -->
+
+    <section id="adminPanel">
+
+        <h2>
+            مدیریت محصولات
+        </h2>
+
+        <div class="adminForm">
+
+            <input
+                id="productName"
+                placeholder="نام محصول"
+            >
+
+            <input
+                id="productPrice"
+                type="number"
+                placeholder="قیمت به تومان"
+            >
+
+            <textarea
+                id="productDescription"
+                placeholder="توضیحات محصول"
+            ></textarea>
+
+            <input
+                id="productImage"
+                type="file"
+                accept="image/*"
+            >
+
+            <button onclick="addProduct()">
+                ➕ اضافه کردن محصول
+            </button>
+
+        </div>
+
+        <div
+            id="adminProducts"
+            class="adminProducts"
+        ></div>
+
+    </section>
+
+</div>
+
+
+<!-- سبد شناور -->
+
+<div id="cartPanel">
+
+    <button
+        class="cartButton"
+        onclick="openCart()"
+    >
+        🛒 سبد خرید
+        <span id="cartCount2">0</span>
+    </button>
+
+</div>
+
+
+<!-- سبد خرید -->
+
+<div id="cartBox">
+
+    <div class="modal">
+
+        <h2>
+            🛒 سبد خرید
+        </h2>
+
+        <div id="cartItems"></div>
+
+        <div class="total">
+
+            مجموع:
+            <span id="totalPrice">0</span>
+            تومان
+
+        </div>
+
+        <button
+            class="close"
+            onclick="closeCart()"
+        >
+            بستن
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- پروفایل -->
+
+<div id="profileBox">
+
+    <div class="modal">
+
+        <h2>
+            👤 پروفایل
+        </h2>
+
+        <div id="profileContent"></div>
+
+        <button
+            class="close"
+            onclick="closeProfile()"
+        >
+            بستن
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+const PRODUCTS_KEY =
+    "sample_products";
+
+const CURRENT_USER_KEY =
+    "sample_current_user";
+
+
+let currentUser =
+    JSON.parse(
+        localStorage.getItem(CURRENT_USER_KEY) || "null"
+    );
+
+
+let cart = [];
+
+
+function getProducts(){
+
+    return JSON.parse(
+        localStorage.getItem(PRODUCTS_KEY) || "[]"
+    );
+
+}
+
+
+function saveProducts(products){
+
+    localStorage.setItem(
+        PRODUCTS_KEY,
+        JSON.stringify(products)
+    );
+
+}
+
+
+function getCartKey(){
+
+    if(!currentUser) return null;
+
+    return "cart_" + currentUser.username;
+
+}
+
+
+function loadCart(){
+
+    if(!currentUser){
+
+        cart = [];
+
+        return;
+    }
+
+
+    cart = JSON.parse(
+        localStorage.getItem(getCartKey()) || "[]"
+    );
+
+}
+
+
+function saveCart(){
+
+    if(!currentUser) return;
+
+
+    localStorage.setItem(
+        getCartKey(),
+        JSON.stringify(cart)
+    );
+
+}
+
+
+/* =========================
+   محصولات
+========================= */
+
+function renderProducts(){
+
+    const products =
+        getProducts();
+
+    const container =
+        document.getElementById("products");
+
+
+    if(products.length === 0){
+
+        container.innerHTML = `
+            <div class="empty">
+                هنوز محصولی اضافه نشده است
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        products.map(product => `
+
+        <div class="product">
+
+            <img
+                src="${product.image}"
+                alt="${escapeHTML(product.name)}"
+            >
+
+            <div class="productInfo">
+
+                <h3>
+                    ${escapeHTML(product.name)}
+                </h3>
+
+                <div class="description">
+                    ${escapeHTML(
+                        product.description ||
+                        "بدون توضیحات"
+                    )}
+                </div>
+
+                <div class="price">
+                    ${Number(
+                        product.price
+                    ).toLocaleString()}
+                    تومان
+                </div>
+
+                <button
+                    onclick="addToCart('${product.id}')"
+                >
+                    🛒 افزودن به سبد خرید
+                </button>
+
+            </div>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+/* =========================
+   اضافه کردن به سبد
+========================= */
+
+function addToCart(id){
+
+    if(!currentUser){
+
+        alert(
+            "برای افزودن محصول به سبد خرید، ابتدا وارد حساب شوید."
+        );
+
+        openProfile();
+
+        return;
+
+    }
+
+
+    const products =
+        getProducts();
+
+    const product =
+        products.find(
+            p => p.id === id
+        );
+
+
+    if(!product) return;
+
+
+    cart.push(product);
+
+    saveCart();
+
+    updateCartCount();
+
+    alert(
+        "محصول به سبد خرید اضافه شد"
+    );
+
+}
+
+
+/* =========================
+   سبد
+========================= */
+
+function updateCartCount(){
+
+    const count =
+        cart.length;
+
+    document.getElementById(
+        "cartCount"
+    ).innerText = count;
+
+    document.getElementById(
+        "cartCount2"
+    ).innerText = count;
+
+}
+
+
+function openCart(){
+
+    if(!currentUser){
+
+        alert(
+            "برای مشاهده سبد خرید ابتدا وارد شوید."
+        );
+
+        openProfile();
+
+        return;
+
+    }
+
+
+    renderCart();
+
+    document.getElementById(
+        "cartBox"
+    ).style.display = "flex";
+
+}
+
+
+function closeCart(){
+
+    document.getElementById(
+        "cartBox"
+    ).style.display = "none";
+
+}
+
+
+function renderCart(){
+
+    const box =
+        document.getElementById(
+            "cartItems"
+        );
+
+
+    if(cart.length === 0){
+
+        box.innerHTML = `
+            <div class="empty">
+                سبد خرید خالی است
+            </div>
+        `;
+
+        document.getElementById(
+            "totalPrice"
+        ).innerText = "0";
+
+        return;
+
+    }
+
+
+    let total = 0;
+
+
+    box.innerHTML =
+        cart.map((product,index)=>{
+
+            total +=
+                Number(product.price);
+
+
+            return `
+
+            <div class="cartItem">
+
+                <div>
+
+                    <strong>
+                        ${escapeHTML(
+                            product.name
+                        )}
+                    </strong>
+
+                    <br>
+
+                    ${Number(
+                        product.price
+                    ).toLocaleString()}
+                    تومان
+
+                </div>
+
+                <button
+                    onclick="removeFromCart(${index})"
+                >
+                    حذف
+                </button>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+
+    document.getElementById(
+        "totalPrice"
+    ).innerText =
+        total.toLocaleString();
+
+}
+
+
+function removeFromCart(index){
+
+    cart.splice(index,1);
+
+    saveCart();
+
+    renderCart();
+
+    updateCartCount();
+
+}
+
+
+/* =========================
+   پروفایل
+========================= */
+
+function openProfile(){
+
+    const box =
+        document.getElementById(
+            "profileContent"
+        );
+
+
+    if(!currentUser){
+
+        box.innerHTML = `
+
+            <div class="profileInfo">
+
+                <p>
+                    برای استفاده از امکانات خرید
+                    وارد حساب شوید یا ثبت‌نام کنید.
+                </p>
+
+            </div>
+
+            <button onclick="goLogin()">
+                🔐 ورود
+            </button>
+
+            <button onclick="goSignup()">
+                ✨ ثبت‌نام
+            </button>
+
+        `;
+
+    }else{
+
+        box.innerHTML = `
+
+            <div class="profileInfo">
+
+                <strong>
+                    ${escapeHTML(
+                        currentUser.username
+                    )}
+                </strong>
+
+                <br><br>
+
+                حساب شما آماده استفاده است.
+
+            </div>
+
+            <button onclick="logout()">
+                🚪 خروج از حساب
+            </button>
+
+        `;
+
+    }
+
+
+    document.getElementById(
+        "profileBox"
+    ).style.display = "flex";
+
+}
+
+
+function closeProfile(){
+
+    document.getElementById(
+        "profileBox"
+    ).style.display = "none";
+
+}
+
+
+function goLogin(){
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+function goSignup(){
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+function logout(){
+
+    localStorage.removeItem(
+        CURRENT_USER_KEY
+    );
+
+    currentUser = null;
+
+    cart = [];
+
+    closeProfile();
+
+    updateCartCount();
+
+    setupAdmin();
+
+    alert(
+        "از حساب خارج شدید"
+    );
+
+}
+
+
+/* =========================
+   ادمین
+========================= */
+
+function setupAdmin(){
+
+    const panel =
+        document.getElementById(
+            "adminPanel"
+        );
+
+
+    if(
+        currentUser &&
+        currentUser.role === 4
+    ){
+
+        panel.style.display =
+            "block";
+
+        renderAdminProducts();
+
+    }else{
+
+        panel.style.display =
+            "none";
+
+    }
+
+}
+
+
+function addProduct(){
+
+    if(
+        !currentUser ||
+        currentUser.role !== 4
+    ){
+
+        return;
+
+    }
+
+
+    const name =
+        document.getElementById(
+            "productName"
+        ).value.trim();
+
+    const price =
+        document.getElementById(
+            "productPrice"
+        ).value;
+
+    const description =
+        document.getElementById(
+            "productDescription"
+        ).value.trim();
+
+    const file =
+        document.getElementById(
+            "productImage"
+        ).files[0];
+
+
+    if(!name || !price || !file){
+
+        alert(
+            "نام، قیمت و عکس را وارد کنید"
+        );
+
+        return;
+
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload = function(e){
+
+        const products =
+            getProducts();
+
+
+        products.push({
+
+            id:
+                Date.now().toString(),
+
+            name:name,
+
+            price:Number(price),
+
+            description:description,
+
+            image:e.target.result
+
+        });
+
+
+        saveProducts(products);
+
+
+        document.getElementById(
+            "productName"
+        ).value = "";
+
+        document.getElementById(
+            "productPrice"
+        ).value = "";
+
+        document.getElementById(
+            "productDescription"
+        ).value = "";
+
+        document.getElementById(
+            "productImage"
+        ).value = "";
+
+
+        renderProducts();
+
+        renderAdminProducts();
+
+
+        alert(
+            "محصول با موفقیت ذخیره شد"
+        );
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+}
+
+
+function renderAdminProducts(){
+
+    const products =
+        getProducts();
+
+    const box =
+        document.getElementById(
+            "adminProducts"
+        );
+
+
+    if(products.length === 0){
+
+        box.innerHTML =
+            '<div class="empty">محصولی وجود ندارد</div>';
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+        products.map(product => `
+
+        <div class="adminProduct">
+
+            <div>
+
+                <strong>
+                    ${escapeHTML(
+                        product.name
+                    )}
+                </strong>
+
+                <br>
+
+                ${Number(
+                    product.price
+                ).toLocaleString()}
+                تومان
+
+            </div>
+
+            <button
+                class="delete"
+                onclick="deleteProduct('${product.id}')"
+            >
+                حذف
+            </button>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+function deleteProduct(id){
+
+    if(
+        !currentUser ||
+        currentUser.role !== 4
+    ){
+
+        return;
+
+    }
+
+
+    if(
+        !confirm(
+            "این محصول حذف شود؟"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    let products =
+        getProducts();
+
+
+    products =
+        products.filter(
+            p => p.id !== id
+        );
+
+
+    saveProducts(products);
+
+    renderProducts();
+
+    renderAdminProducts();
+
+}
+
+
+/* =========================
+   امنیت متن
+========================= */
+
+function escapeHTML(text){
+
+    return String(text)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================
+   شروع
+========================= */
+
+loadCart();
+
+renderProducts();
+
+updateCartCount();
+
+setupAdmin();
+
+</script>
+
+</body>
+</html>    margin-bottom:10px;
 }
 
 .subtitle{
