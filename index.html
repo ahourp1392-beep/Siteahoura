@@ -1,40 +1,506 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ورود | نمونه کار</title>
 
-<title>نمونه کار</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<style>
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      background: linear-gradient(135deg, #080b16, #111827, #1e1b4b);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
 
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Tahoma,Arial,sans-serif;
-}
+    .container {
+      width: 100%;
+      max-width: 430px;
+    }
 
-body{
-    background:#080b16;
-    color:white;
-    min-height:100vh;
-}
+    .logo {
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
 
-header{
-    position:sticky;
-    top:0;
-    z-index:100;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:16px 5%;
-    background:rgba(8,11,22,.9);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(255,255,255,.08);
-}
+    .subtitle {
+      text-align: center;
+      color: #a1a1aa;
+      margin-bottom: 25px;
+    }
 
-.logo{
+    .card {
+      background: rgba(17, 24, 39, 0.95);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      background: #080b16;
+      padding: 5px;
+      border-radius: 13px;
+      margin-bottom: 25px;
+    }
+
+    .tab {
+      flex: 1;
+      border: 0;
+      padding: 11px;
+      border-radius: 10px;
+      background: transparent;
+      color: #aaa;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .tab.active {
+      background: linear-gradient(135deg,#7c3aed,#2563eb);
+      color: white;
+    }
+
+    .form {
+      display: none;
+    }
+
+    .form.active {
+      display: block;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .form-description {
+      color: #999;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 15px;
+      border-radius: 12px;
+      border: 1px solid #293044;
+      background: #080b16;
+      color: white;
+      outline: none;
+      font-size: 14px;
+    }
+
+    input:focus {
+      border-color: #7c3aed;
+    }
+
+    .main-btn {
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg,#7c3aed,#2563eb);
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    .main-btn:hover {
+      filter: brightness(1.1);
+    }
+
+    .message {
+      min-height: 22px;
+      text-align: center;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .error {
+      color: #f87171;
+    }
+
+    .success {
+      color: #4ade80;
+    }
+
+    .shop-link {
+      display: block;
+      text-align: center;
+      color: #a78bfa;
+      margin-top: 20px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    @media(max-width:500px) {
+      .card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="logo">نمونه کار</div>
+    <div class="subtitle">ورود به حساب کاربری</div>
+
+    <div class="card">
+
+      <div class="tabs">
+        <button class="tab active" id="loginTab" onclick="showLogin()">
+          ورود
+        </button>
+
+        <button class="tab" id="signupTab" onclick="showSignup()">
+          ثبت‌نام
+        </button>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="form active" id="loginForm">
+
+        <h1>ورود</h1>
+        <div class="form-description">
+          وارد حساب خود شوید
+        </div>
+
+        <div class="message" id="loginMessage"></div>
+
+        <label>نام کاربری</label>
+        <input
+          type="text"
+          id="loginUsername"
+          placeholder="نام کاربری"
+          autocomplete="username"
+        >
+
+        <label>رمز عبور</label>
+        <input
+          type="password"
+          id="loginPassword"
+          placeholder="رمز عبور"
+          autocomplete="current-password"
+        >
+
+        <button class="main-btn" onclick="login()">
+          🔐 ورود
+        </button>
+
+      </div>
+
+      <!-- SIGNUP -->
+      <div class="form" id="signupForm">
+
+        <h1>ثبت‌نام</h1>
+        <div class="form-description">
+          حساب جدید بسازید
+        </div>
+
+        <div class="message" id="signupMessage"></div>
+
+        <label>نام کاربری</label>
+        <input
+          type="text"
+          id="signupUsername"
+          placeholder="نام کاربری"
+          autocomplete="username"
+        >
+
+        <label>رمز عبور</label>
+        <input
+          type="password"
+          id="signupPassword"
+          placeholder="رمز عبور"
+          autocomplete="new-password"
+        >
+
+        <label>تکرار رمز عبور</label>
+        <input
+          type="password"
+          id="signupPassword2"
+          placeholder="تکرار رمز عبور"
+          autocomplete="new-password"
+        >
+
+        <button class="main-btn" onclick="signup()">
+          📝 ساخت حساب
+        </button>
+
+      </div>
+
+      <a href="shop.html" class="shop-link">
+        ← ورود به فروشگاه بدون حساب
+      </a>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    const USERS_KEY = "sample_users";
+    const CURRENT_USER_KEY = "sample_current_user";
+
+    function getUsers() {
+      try {
+        return JSON.parse(localStorage.getItem(USERS_KEY)) || [];
+      } catch {
+        return [];
+      }
+    }
+
+    function saveUsers(users) {
+      localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    }
+
+    function showLogin() {
+      document.getElementById("loginForm").classList.add("active");
+      document.getElementById("signupForm").classList.remove("active");
+
+      document.getElementById("loginTab").classList.add("active");
+      document.getElementById("signupTab").classList.remove("active");
+
+      clearMessages();
+    }
+
+    function showSignup() {
+      document.getElementById("signupForm").classList.add("active");
+      document.getElementById("loginForm").classList.remove("active");
+
+      document.getElementById("signupTab").classList.add("active");
+      document.getElementById("loginTab").classList.remove("active");
+
+      clearMessages();
+    }
+
+    function clearMessages() {
+      document.getElementById("loginMessage").textContent = "";
+      document.getElementById("signupMessage").textContent = "";
+    }
+
+    function login() {
+
+      const username =
+        document.getElementById("loginUsername").value.trim();
+
+      const password =
+        document.getElementById("loginPassword").value;
+
+      const message =
+        document.getElementById("loginMessage");
+
+      message.className = "message";
+
+      if (!username || !password) {
+        message.textContent = "لطفاً همه فیلدها را پر کنید.";
+        message.classList.add("error");
+        return;
+      }
+
+      /*
+        حساب مدیریت
+      */
+      if (
+        username === "ahourapakpanah" &&
+        password === "123456789abcd"
+      ) {
+
+        const admin = {
+          username: "ahourapakpanah",
+          role: 4
+        };
+
+        localStorage.setItem(
+          CURRENT_USER_KEY,
+          JSON.stringify(admin)
+        );
+
+        window.location.href = "shop.html";
+        return;
+      }
+
+      const users = getUsers();
+
+      const user = users.find(
+        u =>
+          u.username === username &&
+          u.password === password
+      );
+
+      if (!user) {
+        message.textContent =
+          "نام کاربری یا رمز عبور اشتباه است.";
+
+        message.classList.add("error");
+        return;
+      }
+
+      localStorage.setItem(
+        CURRENT_USER_KEY,
+        JSON.stringify({
+          username: user.username,
+          role: user.role || 1
+        })
+      );
+
+      message.textContent = "ورود موفق بود...";
+      message.classList.add("success");
+
+      setTimeout(() => {
+        window.location.href = "shop.html";
+      }, 300);
+
+    }
+
+    function signup() {
+
+      const username =
+        document.getElementById("signupUsername").value.trim();
+
+      const password =
+        document.getElementById("signupPassword").value;
+
+      const password2 =
+        document.getElementById("signupPassword2").value;
+
+      const message =
+        document.getElementById("signupMessage");
+
+      message.className = "message";
+
+      if (!username || !password || !password2) {
+        message.textContent =
+          "لطفاً همه فیلدها را پر کنید.";
+
+        message.classList.add("error");
+        return;
+      }
+
+      if (username.length < 3) {
+        message.textContent =
+          "نام کاربری باید حداقل ۳ کاراکتر باشد.";
+
+        message.classList.add("error");
+        return;
+      }
+
+      if (password.length < 4) {
+        message.textContent =
+          "رمز عبور باید حداقل ۴ کاراکتر باشد.";
+
+        message.classList.add("error");
+        return;
+      }
+
+      if (password !== password2) {
+        message.textContent =
+          "تکرار رمز عبور با رمز عبور یکسان نیست.";
+
+        message.classList.add("error");
+        return;
+      }
+
+      if (username === "ahourapakpanah") {
+        message.textContent =
+          "این نام کاربری قابل استفاده نیست.";
+
+        message.classList.add("error");
+        return;
+      }
+
+      const users = getUsers();
+
+      const exists = users.some(
+        u => u.username === username
+      );
+
+      if (exists) {
+        message.textContent =
+          "این نام کاربری قبلاً ثبت شده است.";
+
+        message.classList.add("error");
+        return;
+      }
+
+      const newUser = {
+        username: username,
+        password: password,
+        role: 1
+      };
+
+      users.push(newUser);
+      saveUsers(users);
+
+      localStorage.setItem(
+        CURRENT_USER_KEY,
+        JSON.stringify({
+          username: username,
+          role: 1
+        })
+      );
+
+      message.textContent =
+        "حساب ساخته شد...";
+
+      message.classList.add("success");
+
+      setTimeout(() => {
+        window.location.href = "shop.html";
+      }, 400);
+    }
+
+    /*
+      اگر کاربر قبلاً وارد شده بود،
+      مستقیماً فروشگاه باز شود.
+    */
+    window.addEventListener("load", () => {
+
+      const currentUser =
+        localStorage.getItem(CURRENT_USER_KEY);
+
+      if (currentUser) {
+        try {
+          JSON.parse(currentUser);
+          // اینجا عمداً ریدایرکت نمی‌کنیم
+          // تا کاربر بتواند دوباره صفحه ورود را ببیند.
+        } catch {
+          localStorage.removeItem(CURRENT_USER_KEY);
+        }
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>.logo{
     font-size:24px;
     font-weight:bold;
 }
